@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Buildtrex</title>
+</head>
+<body>
+	<h1>Index Page</h1>
+		<a href="/create"><input type="button" value="Create new"></a>
+		<hr>
+		<% @posts.each do |post| %>
+		<h3><%= post.title %></h3>
+		<p><%= post.text %></p>
+		<a href="/edit/<%= post.id %>" class="button">Edit</a>&nbsp;<a href="/delete/<%= post.id %>" class="button">Delete</a>
+		<hr>
+		<% end %>
+</body>
+</html>
