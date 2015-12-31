@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Проекты</title>
+</head>
+<body>
+		<h1>Projects</h1>
+		<a href="/">Главная</a>&nbsp;
+		<a href="/service">Услуги</a>&nbsp;
+		<a href="/projects">Проекты</a>&nbsp;
+		<a href="/contacts">Контакты</a>&nbsp;
+		<br>
+		<% if is_authenticated? %>
+			<a href="/logout"><input type="button" value="Logout"></a>
+		<% end %>
+
+		<% @projects.each do |project| %>
+			<h3><%= project.title %></h3>
+			<% unless project.image.nil? %>
+			<img src="<%= project.image.url %>">
+			<% end %>
+			<p><%= project.text %></p>
+			<% if is_authenticated? %>
+				<a href="/project/edit/<%= project.id %>" class="button">Edit</a>&nbsp;
+				<a href="/project/delete/<%= project.id %>" class="button">Delete</a>
+			<% end %>
+			<hr>
+		<% end %>
+
+	<h2> Comments </h2>
+	<% if is_authenticated? %>
+		<a href="/comment/create"><input type="button" value="Create new"></a>
+	<% end %>
+
+	<% @comments.each do |comment| %>
+		<h3><%= comment.name %></h3>
+		<p><%= comment.text %></p>
+		<% if is_authenticated? %>
+				<a href="/comment/edit/<%= comment.id %>" class="button">Edit</a>&nbsp;
+				<a href="/comment/delete/<%= comment.id %>" class="button">Delete</a>
+		<% end %>
+	<% end %>
+	<hr>
+</body>
+</html>

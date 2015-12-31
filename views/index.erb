@@ -6,13 +6,38 @@
 </head>
 <body>
 	<h1>Index Page</h1>
-		<a href="/create"><input type="button" value="Create new"></a>
-		<hr>
-		<% @posts.each do |post| %>
-		<h3><%= post.title %></h3>
-		<p><%= post.text %></p>
-		<a href="/edit/<%= post.id %>" class="button">Edit</a>&nbsp;<a href="/delete/<%= post.id %>" class="button">Delete</a>
-		<hr>
+		<a href="/">Главная</a>&nbsp;
+		<a href="/service">Услуги</a>&nbsp;
+		<a href="/projects">Проекты</a>&nbsp;
+		<a href="/contacts">Контакты</a>&nbsp;
+		<br>
+
+		<% if is_authenticated? %>
+			<a href="/logout"><input type="button" value="Logout"></a>
 		<% end %>
+		<hr>
+		<h3><%= @article.title %></h3>
+		<%= @article.text %>
+					<% if is_authenticated? %>
+					<br>
+				<a href="/article/edit/<%= @article.id %>" class="button">Edit</a>
+			<% end %>
+		<hr>
+<h2> Comments </h2>
+		<% if is_authenticated? %>
+			<a href="/comment/create"><input type="button" value="Create new"></a>
+		<% end %>
+
+		<% @comments.each do |comment| %>
+			<h3><%= comment.name %></h3>
+			<p><%= comment.text %></p>
+			<% if is_authenticated? %>
+				<a href="/comment/edit/<%= comment.id %>" class="button">Edit</a>&nbsp;
+				<a href="/comment/delete/<%= comment.id %>" class="button">Delete</a>
+			<% end %>
+		<% end %>
+		<hr>
+
+
 </body>
 </html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Edit comment</title>
+</head>
+<body>
+	<form method="post" action="/comment/edit/<%= @comment.id %>">
+		<label for="name">Title</label>
+		<input type="text" name="name" value="<%= @comment.name %>">
+		<label for="text">Text</label>
+		<input type="text" name="text" value="<%= @comment.text %>">
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
